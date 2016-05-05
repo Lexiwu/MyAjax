@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+
+    <title></title>
+	<meta charset="utf-8" />
+    <!--<script>
+        var str = "04 15 25 27 30 18";
+        var aaa = parseInt(str);
+        var splitResult = aaa.split(" ");
+        console.log(splitResult);
+        var mystr = "aa,ccc,dd";
+        var result = mystr.split(",");
+        console.log(result);
+
+       // var arr = [];
+
+       //// arr[18] = 0;
+       // arr[18] += 1;
+       // console.log(arr);
+       // console.log(arr.length);
+
+    </script>-->
+</head>
+<body>
+    <div id="lottery"></div>
+
+
+
+
+
+    <script src="jquery-1.12.3.js"></script>
+
+    <script>
+       
+     
+
+        var result = document.getElementById('lottery');
+
+            $.get('https://data.ny.gov/api/views/d6yy-54nr/rows.json?accessType=DOWNLOAD')
+            .done(function (num) {
+                var answers = [];
+                for (var i = 0; i < num.data.length;i++){
+
+                    //console.log(num.data[i][9]);
+                    var str = num.data[i][9];                    
+                    var splitResult = str.split(" ");
+                    //var aaa = parseInt(str);
+                   // console.log(str);  //str結果出來是字串
+                    // console.log(splitResult);  //spliResult結果出來是陣列 裡面是"04"(字串)
+                    //console.log(parseInt(splitResult)); //parseInt(splitResult): 將陣列第1個值取出，變成數字
+
+                    for (var j = 0; j < num.data[i][9].length; j++) {
+                        // console.log(parseInt(splitResult[j]));  //splitResult[j]: 將spliResult裡的值一個個取出來
+                        if (isNaN(answers[parseInt(splitResult[j])])){
+                            answers[parseInt(splitResult[j])] = 0;
+                            //console.log(parseInt(splitResult[j]), answers[parseInt(splitResult[j])]);
+                        } 
+                            answers[parseInt(splitResult[j])] = answers[parseInt(splitResult[j])] + 1;
+                    }
+                }
+                //console.log('IN');
+                for (b = 0; b < answers.length; b++) {
+
+                    console.log(b+" count :",answers[b]);
+                }
+
+
+                //alert('GET');
+                //console.log(num.data);
+               //console.log(num.data[0][9]);
+               // result.innerHTML = num.data;
+            })
+
+
+            
+
+
+
+
+
+    </script>
+</body>
+</html>
