@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <div id="jobtitle"></div>
+
+
+
+
+    <script src="jquery-1.12.3.js"></script>
+
+    <script>
+        var countjob = document.getElementById('jobtitle');
+        var aa = [];  //放每次找到的新工作名稱
+        var bb = [];  //計算每個工作次數
+        $.get('https://data.sfgov.org/api/views/58un-vqfs/rows.json?accessType=DOWNLOAD')
+        .done(function (job) {
+            for (var i = 0; i < job.data.length; i++) {
+
+                //console.log(aa.indexOf(job.data[i][9]));
+                if (aa.indexOf(job.data[i][9]) == -1) {    //indexOf回傳值:-1 代表找不到相對的值
+
+                    aa.push(job.data[i][9]);          // 將新工作名稱增加到aa[]裡
+                    bb.push(1);                       // 每個新工作名稱次數+1
+                }
+                else {  //indexOf回傳值不是-1就代表有找到一樣的
+                    bb[aa.indexOf(job.data[i][9])] += 1;  //有找到一樣的就次數加1
+                }
+            }
+
+            console.log(aa);
+            console.log(aa.length);
+            console.log(bb);
+
+            console.log(bb.indexOf(2));
+            console.log(aa[1002]);
+
+            
+                       
+            
+            
+        });
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    
+
+
+    <div>
+        <span>姓名：</span> <input type="text" id="name"/> <br><br>
+        <span>ID ：</span> <input type="text" id="id" /><br><br>
+        <span>Email：</span><input type="text" id="email" /><br><br>
+        <input type="button" class="submit" value="Submit" onclick="test()">
+
+    </div>
+
+    <script src="jquery-1.12.3.js"></script>
+    <script src="js.cookie.js"></script>
+
+
+    <script>
+        function test() {
+
+
+            var client_info = {
+                client_name:$("#name").val(),
+                client_id:$("#id").val(),
+                client_emmil:$("#email").val()
+
+            }
+          
+            var client_json  = JSON.stringify(client_info);
+            
+            
+            //Cookies.set('name', client_json);
+            //console.log(Cookies.get('name'));
+
+            localStorage.setItem("name", client_json);
+            localStorage.getItem("name");
+
+            sessionStorage.setItem("name", client_json);
+            sessionStorage.getItem("name");
+            //不錯喔 都做出來了 :) 你超棒的 
+
+
+        }
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>
