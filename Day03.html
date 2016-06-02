@@ -4,153 +4,196 @@
     <title></title>
     <meta charset="utf-8" />
 
+    <link href="bootstrap-3.3.6-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="bootstrap-3.3.6-dist/css/bootstrap-papertheme.css" rel="stylesheet" />
+
     <style>
-            .fn-hide{
-            display: none;
-        }
+    .my_theme{
+        width:500px;      
+        margin:0 auto;
+        text-align:center;
+        vertical-align:middle;
+
+    }
+
+    .my_theme .form_theme{
+        text-align:center;
+        vertical-align:middle;
+    }
+
+    .my_addtheme{
+        width:500px;
+        position:relative;
+        left:480px;
+    }
+    h3{
+        text-align:center;
+    }
+
 
     </style>
 </head>
 <body>
-    <table id="myCustomer">
-        <tr>
-            <td>ID</td>
-            <td>Name</td>
-            <td>Email</td>
-            <td>Subject</td>
-            <td>Message</td>
-            <td>Modify</td>
-            <td>Delete</td>
-        </tr>
 
-
-    </table>
-    
-    <input type="text" class="new_name" placeholder="Name" />
-    <input type="text" class="new_email" placeholder="Email" />
-    <input type="text" class="new_subject" placeholder="Subject" />
-    <input type="text" class="new_message" placeholder="Message" />
-    <input type="button" value="ADD" onclick="add()" />
-
-    <br><br><br><br>
-
-
-    <!--      test         -->
-
-    <div>
-        <table id="zTable">
+    <h3>新增、刪除、修改表單</h3>
+    <table id="myCustomer" class="my_theme table table-bordered">
+        <tbody>
             <tr>
-                <td>姓名</td>
-                <td>
-                    <span class="ztext">1111</span>
-                    <input class="zInput fn-hide" value="" />
-                </td>
-                <td>年龄</td>
-                <td>
-                    <span class="ztext">21</span>
-                    <input class="zInput fn-hide" value="" />
-                </td>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Subject</td>
+                <td>Message</td>
+                <td>Modify</td>
+                <td>Delete</td>
             </tr>
-        </table>
-        <button onclick="changeTb()">编辑</button>
-    </div>
+        </tbody>
+    </table>
 
-   <!--      test         -->
+    <br>
+    <br>
+
+    <table id="myCustomer" class="my_addtheme table table-bordered">
+        <tbody>
+            <tr>
+                <td><input type="text" class="new_ID" placeholder="ID" /></td>
+                <td><input type="text" class="new_name" placeholder="Name" /></td>
+                <td><input type="text" class="new_email" placeholder="Email" /></td>
+                <td><input type="text" class="new_subject" placeholder="Subject" /></td>
+                <td><input type="text" class="new_message" placeholder="Message" /></td>
+                <td><input type="button" class="btn btn-danger" value="ADD" onclick="add()" /></td>
+            </tr>
+        </tbody>
+</table>
+        <br>
+        <br>
+        <br>
+        <br>
 
 
-    <script src="jquery-1.12.3.js"></script>
-    <script>
-
-        ////test
-        function changeTb() {
-            var _zText = $("#zTable").find("tr td span.ztext");
-            var _zInput = $("#zTable").find("tr td .zInput");
-            _zText.toggleClass("fn-hide");
-            _zInput.toggleClass("fn-hide");
-        }
-
-        ////
 
 
-        $.ajaxSetup({
-            contentType: "application/json; charset=utf-8"
-        });
-        ////新增資料
 
-        ////1. 取得新增資料的值，並宣告json資料格式
-        function add() {
-            var new_client={
-                ID: $('.new_ID').val(),
-                Name: $('.new_name').val(),
-                Email: $('.new_email').val(),
-                Subject: $('.new_subject').val(),
-                Message: $('.new_message').val()
-            }
-            var new_json = JSON.stringify(new_client);   ////2.將取得的值轉換為json格式
+        <script src="jquery-1.12.3.js"></script>
+        <script>
 
-            $.post("http://localhost/MyAPI/api/myapi/post", new_json)  ////3.jQuery post新增到後端
-            .done(function (new_info) {
+         
 
-                ////4. 新增到後端後，新增到表格
-                $('#myCustomer tr:last').after("<tr>"
-                                                    + "<td><input type='text' value='" + $('.new_name').val() + "'></td>"
-                                                    + "<td><input type='text' value='" + $('.new_email').val() + "'></td>"
-                                                    + "<td><input type='text' value='" + $('.new_subject').val() + "'></td>"
-                                                    + "<td><input type='text' value='" + $('.new_message').val() + "'></td>"
-                                                    +"<td><button class='modify'>modify</button>"
-                                                    + "<td><button class='delete'>delete</button></td></tr>")
 
-               
-
+            $.ajaxSetup({
+                contentType: "application/json; charset=utf-8"
             });
+            ////新增資料
+
+            ////1. 取得新增資料的值，並宣告json資料格式
+            //function add() {
+            //    var new_client = {
+            //        ID: $('.new_ID').val(),
+            //        Name: $('.new_name').val(),
+            //        Email: $('.new_email').val(),
+            //        Subject: $('.new_subject').val(),
+            //        Message: $('.new_message').val()
+            //    }
+            //    var new_json = JSON.stringify(new_client);   ////2.將取得的值轉換為json格式
+
+            //    $.post("http://localhost/MyAPI/api/myapi/post", new_json)  ////3.jQuery post新增到後端
+            //    .done(function (new_info) {
+
+            //        ////4. 新增到後端後，新增到表格
+            //        $('#myCustomer tr:last').after("<tr>"
+            //                                            + "<td class='form_theme'><input type='text' value='" + $('.new_name').val() + "'></td>"
+            //                                            + "<td class='form_theme'><input type='text' value='" + $('.new_email').val() + "'></td>"
+            //                                            + "<td class='form_theme'><input type='text' value='" + $('.new_subject').val() + "'></td>"
+            //                                            + "<td class='form_theme'><input type='text' value='" + $('.new_message').val() + "'></td>"
+            //                                            + "<td><button class='modify btn btn-success'>modify</button>"
+            //                                            + "<td><button class='delete btn btn-primary'>delete</button></td></tr>")
 
 
 
-        }
+            //    });
+            //    location.reload();
 
-        //// 刪除&修改資料
 
-        //1. GET 取得所有顧客的資料
-        $.get("http://localhost/MyAPI/api/myapi/Get")
-        .done(function (data) {
-            //2. 取得資料的筆數
-            console.log(data.length);
-            console.log(data);
-            //3. 利用迴圈把顧客的資料新增到表格裡
-            for (var i = 0; i < data.length; i++) {
-                console.log(data[i].Name);
+            //}
 
-                $('#myCustomer').append("<tr><td>" + data[i].ID +"</td>"
-                                                    + "<td><input type='text' value='" + data[i].Name + "'></td>"
-                                                   + "<td><input type='text' value='" + data[i].Email + "'</td>"
-                                                   + "<td><input type='text' value='" + data[i].Subject + "'</td>"
-                                                   + "<td><input type='text' value='" + data[i].Message + "'</td>"                                                  
-                                                   + "<td><button class='modify'>modify</button></td>"
-                                                   + "<td><button class='delete'>delete</button></td></tr>"
-                                                   )
-            }
+            
+
+            ///新增一個新的陣列
+            var myform_data = [];
+            myform_data.push(
+                {ID:"1",
+                 Name:"A",
+                 Email:"1@abc",
+                Subject:"xxx1",
+                Message:"hello1"
+                });
+            myform_data.push(
+                {
+                    ID: "2",
+                    Name: "B",
+                    Email: "2@abc",
+                    Subject: "xxx2",
+                    Message: "hello2"
+                });
+            myform_data.push(
+                {
+                    ID: "3",
+                    Name: "C",
+                    Email: "3@abc",
+                    Subject: "xxx3",
+                    Message: "hello3"
+                });
+            myform_data.push(
+                {
+                    ID: "4",
+                    Name: "D",
+                    Email: "4@abc",
+                    Subject: "xxx4",
+                    Message: "hello4"
+                });
+            myform_data.push(
+                {
+                    ID: "5",
+                    Name: "E",
+                    Email: "5@abc",
+                    Subject: "xxx5",
+                    Message: "hello5"
+                });
+
+            for (var i = 0; i < myform_data.length; i++) {
+                $('#myCustomer').append("<tr><td class='form_theme'>" + myform_data[i].ID + "</td>"
+                                                       + "<td class='form_theme'><input type='text' value='" + myform_data[i].Name + "'></td>"
+                                                       + "<td class='form_theme'><input type='text' value='" + myform_data[i].Email + "'</td>"
+                                                       + "<td class='form_theme'><input type='text' value='" + myform_data[i].Subject + "'</td>"
+                                                       + "<td class='form_theme'><input type='text' value='" + myform_data[i].Message + "'</td>"
+                                                       + "<td><button class='modify btn btn-success'>modify</button></td>"
+                                                       + "<td><button class='delete btn btn-primary'>delete</button></td></tr>"
+                                                       )
+
+            };
+
             $(".modify").on('click', function (e) {
-                //$(this).parent().parent().children().eq(1);
-                //$(this).parent().parent().children().eq(2);
-                //$(this).parent().parent().children().eq(3);
-                //$(this).parent().parent().children().eq(4);
-                //console.log($(this).parent().parent().children().eq(1));
-                //console.log($(this).parent().parent().children().eq(2));
-                //console.log($(this).parent().parent().children().eq(3));
-                //console.log($(this).parent().parent().children().eq(4));
+                $(this).parent().parent().children().eq(1);
+                $(this).parent().parent().children().eq(2);
+                $(this).parent().parent().children().eq(3);
+                $(this).parent().parent().children().eq(4);
+                console.log($(this).parent().parent().children().eq(1));
+                console.log($(this).parent().parent().children().eq(2));
+                console.log($(this).parent().parent().children().eq(3));
+                console.log($(this).parent().parent().children().eq(4));
                 var modi_tr0 = $(this).parent().parent().children().eq(0).text();
-                //console.log(modi_tr0);
+                console.log(modi_tr0);
                 var modi_tr1 = $(this).parent().parent().children().eq(1).children().val();
-               // console.log(modi_tr1);
+                console.log(modi_tr1);
                 var modi_tr2 = $(this).parent().parent().children().eq(2).children().val();
                 var modi_tr3 = $(this).parent().parent().children().eq(3).children().val();
                 var modi_tr4 = $(this).parent().parent().children().eq(4).children().val();
                 var addjosn = {
-                            ID: modi_tr0,
-                            Name: modi_tr1,
-                            Email: modi_tr2,
-                            Subject: modi_tr3,
-                            Message: modi_tr4
+                    ID: modi_tr0,
+                    Name: modi_tr1,
+                    Email: modi_tr2,
+                    Subject: modi_tr3,
+                    Message: modi_tr4
                 }
                 var converse = JSON.stringify(addjosn);
                 console.log(converse);
@@ -163,14 +206,14 @@
 
             $(".delete").on('click', function (e) {
                 $(this).parent().parent().children().eq(0);
-               //console.log($(this).parent().parent().children().eq(0));
+                console.log($(this).parent().parent().children().eq(0));
                 var tr = $(this).parent().parent();
                 $.post("http://localhost/MyAPI/api/myapi/Delete?ID=" + $(this).parent().parent().children().eq(0).text())
                     .done(function (removed) {
 
                         console.log(removed);
                         var test1 = JSON.parse(removed);
-                        //console.log(test1.msg == "成功");
+                        console.log(test1.msg == "成功");
                         if (test1.msg == "成功") {
                             tr.remove();
                         }
@@ -179,10 +222,123 @@
 
             });
 
-           
-        });
+            ////新增資料
 
-        
-    </script>
+            ////1. 取得新增資料的值，並宣告json資料格式
+            function add() {
+
+                //myform_data.push(
+                //{
+                //    ID: "5",
+                //    Name: "E",
+                //    Email: "5@abc",
+                //    Subject: "xxx5",
+                //    Message: "hello5"
+                //});
+
+                var new_client = {
+                    ID: $('.new_ID').val(),
+                    Name: $('.new_name').val(),
+                    Email: $('.new_email').val(),
+                    Subject: $('.new_subject').val(),
+                    Message: $('.new_message').val()
+                }
+                myform_data.push(new_client);
+                
+                        ////4. 新增到陣列後，新增tr
+                $('#myCustomer tr:last').after("<tr>"
+                                                    + "<td class='form_theme'>" + $('.new_ID').val()+"</td>"
+                                                    + "<td class='form_theme'><input type='text' value='" + $('.new_name').val() + "'></td>"
+                                                    + "<td class='form_theme'><input type='text' value='" + $('.new_email').val() + "'></td>"
+                                                    + "<td class='form_theme'><input type='text' value='" + $('.new_subject').val() + "'></td>"
+                                                    + "<td class='form_theme'><input type='text' value='" + $('.new_message').val() + "'></td>"
+                                                    + "<td><button class='modify btn btn-success'>modify</button>"
+                                                    + "<td><button class='delete btn btn-primary'>delete</button></td></tr>");
+                
+
+            }
+
+
+
+
+            //// 刪除&修改
+
+            //1. GET 取得所有顧客的資料
+            //$.get("http://localhost/MyAPI/api/myapi/Get")
+            //.done(function (data) {
+            //    //2. 取得資料的筆數
+            //    console.log(data.length);
+            //    console.log(data);
+                
+            //    //3. 利用迴圈把顧客的資料新增到表格裡
+            //    for (var i = 0; i < data.length; i++) {
+            //        console.log(data[i].Name);
+
+            //        $('#myCustomer').append("<tr><td class='form_theme'>" + data[i].ID + "</td>"
+            //                                           + "<td class='form_theme'><input type='text' value='" + data[i].Name + "'></td>"
+            //                                           + "<td class='form_theme'><input type='text' value='" + data[i].Email + "'</td>"
+            //                                           + "<td class='form_theme'><input type='text' value='" + data[i].Subject + "'</td>"
+            //                                           + "<td class='form_theme'><input type='text' value='" + data[i].Message + "'</td>"
+            //                                           + "<td><button class='modify btn btn-success'>modify</button></td>"
+            //                                           + "<td><button class='delete btn btn-primary'>delete</button></td></tr>"
+            //                                           )
+            //    }
+            //    $(".modify").on('click', function (e) {
+            //        $(this).parent().parent().children().eq(1);
+            //        $(this).parent().parent().children().eq(2);
+            //        $(this).parent().parent().children().eq(3);
+            //        $(this).parent().parent().children().eq(4);
+            //        console.log($(this).parent().parent().children().eq(1));
+            //        console.log($(this).parent().parent().children().eq(2));
+            //        console.log($(this).parent().parent().children().eq(3));
+            //        console.log($(this).parent().parent().children().eq(4));
+            //        var modi_tr0 = $(this).parent().parent().children().eq(0).text();
+            //        console.log(modi_tr0);
+            //        var modi_tr1 = $(this).parent().parent().children().eq(1).children().val();
+            //         console.log(modi_tr1);
+            //        var modi_tr2 = $(this).parent().parent().children().eq(2).children().val();
+            //        var modi_tr3 = $(this).parent().parent().children().eq(3).children().val();
+            //        var modi_tr4 = $(this).parent().parent().children().eq(4).children().val();
+            //        var addjosn = {
+            //            ID: modi_tr0,
+            //            Name: modi_tr1,
+            //            Email: modi_tr2,
+            //            Subject: modi_tr3,
+            //            Message: modi_tr4
+            //        }
+            //        var converse = JSON.stringify(addjosn);
+            //        console.log(converse);
+            //        $.post('http://localhost/MyAPI/api/myapi/EditItem', converse)
+            //        .done(function (modified) {
+            //            console.log(modified);
+            //        })
+            //    });
+
+
+            //    $(".delete").on('click', function (e) {
+            //        $(this).parent().parent().children().eq(0);
+            //        console.log($(this).parent().parent().children().eq(0));
+            //        var tr = $(this).parent().parent();
+            //        $.post("http://localhost/MyAPI/api/myapi/Delete?ID=" + $(this).parent().parent().children().eq(0).text())
+            //            .done(function (removed) {
+
+            //                console.log(removed);
+            //                var test1 = JSON.parse(removed);
+            //                console.log(test1.msg == "成功");
+            //                if (test1.msg == "成功") {
+            //                    tr.remove();
+            //                }
+
+            //            });
+
+            //    });
+
+
+            //});
+
+
+        </script>
+
+        <script src="bootstrap-3.3.6-dist/js/bootstrap.js"></script>
 </body>
 </html>

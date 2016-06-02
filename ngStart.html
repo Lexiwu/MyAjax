@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="js/angular.js"></script>
+    <script src="js/ng/main.js"></script>
+    <script src="js/ng/myCtrl.js"></script>
+</head>
+<body data-ng-app="myapp" data-ng-controller="FirstCtrl">
+
+    <div data-ng-repeat="item in studentList">
+        我的名字是{{item.name}} <br />
+        我的Number是{{item.Numbers}}
+    </div>
+
+</body>
+</html>
